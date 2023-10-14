@@ -1,0 +1,29 @@
+{
+  "name": "resume",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint"
+  },
+  "dependencies": {
+    "@emotion/react": "^11.11.1",
+    "@emotion/styled": "^11.11.0",
+    "@mui/icons-material": "^5.14.11",
+    "@mui/material": "^5.14.11",
+    "eslint-config-prettier": "^9.0.0",
+    "next": "latest",
+    "prettier": "^3.0.3",
+    "react": "latest",
+    "react-dom": "latest",
+    "react-material-ui-carousel": "^3.4.2",
+    "react-mui-fileuploader": "^0.5.2",
+    "recharts": "^2.8.0"
+  },
+  "devDependencies": {
+    "eslint-config-next": "^13.5.3",
+    "eslint-plugin-import": "^2.28.1"
+  }
+}
