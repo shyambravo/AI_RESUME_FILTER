@@ -1,9 +1,26 @@
+'use client'
+
 import React from 'react'
 import Carousel from 'react-material-ui-carousel'
-import { Paper, Button } from '@mui/material'
-import Image from 'next/image'
 
-export default function Component(props) {
+function Item(props) {
+  return (
+    <div style={{ textAlign: 'center', fontFamily: 'Cabin Sketch, cursive' }}>
+      <h3>{props.item.description}</h3>
+      <img
+        style={{
+          width: '100%',
+          maxHeight: '500px',
+          objectFit: 'cover',
+        }}
+        src={props.item.src}
+        alt="AI resume filter"
+      />
+    </div>
+  )
+}
+
+const CarouselComponent = () => {
   var items = [
     {
       src: 'https://images.pexels.com/photos/590016/pexels-photo-590016.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1',
@@ -32,19 +49,4 @@ export default function Component(props) {
   )
 }
 
-function Item(props) {
-  return (
-    <div style={{ textAlign: 'center', fontFamily: 'Cabin Sketch, cursive' }}>
-      <h3>{props.item.description}</h3>
-      <img
-        style={{
-          width: '100%',
-          maxHeight: '500px',
-          objectFit: 'cover',
-        }}
-        src={props.item.src}
-        alt="AI resume filter"
-      />
-    </div>
-  )
-}
+export { CarouselComponent }

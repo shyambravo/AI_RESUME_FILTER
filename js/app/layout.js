@@ -1,5 +1,5 @@
-import NavBar from './(components)/NavBar'
 import { Inter } from 'next/font/google'
+import MainContainer from './container'
 
 const inter = Inter({ subsets: ['latin'] })
 
@@ -12,8 +12,8 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en">
       <body className={inter.className}>
-        <NavBar />
-        {children}
+        {/* eslint-disable-next-line react/no-children-prop */}
+        <MainContainer children={children} />
       </body>
     </html>
   )
