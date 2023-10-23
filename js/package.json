@@ -6,7 +6,8 @@
     "dev": "next dev",
     "build": "npm i && next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "initiate DB migration": "npx prisma migrate dev --name init"
   },
   "dependencies": {
     "@emotion/react": "^11.11.1",
