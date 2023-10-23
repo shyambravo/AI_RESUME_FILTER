@@ -26,7 +26,6 @@ const grey = {
 }
 
 const Dummy = (props) => {
-  console.log(props)
   return (
     <div
       className={props.className}
