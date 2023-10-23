@@ -29,4 +29,6 @@ model Conversation {
   name      String
   userID    Int
   timeStamp String
+  chat      String
+  dataSet   String
 }
