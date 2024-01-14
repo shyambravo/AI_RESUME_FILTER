@@ -1,32 +1,35 @@
+'use client'
+
 import * as React from 'react'
 import Box from '@mui/material/Box'
-import Stepper from '@mui/material/Stepper'
-import Step from '@mui/material/Step'
-import StepLabel from '@mui/material/StepLabel'
-import StepContent from '@mui/material/StepContent'
-import Button from '@mui/material/Button'
+import { useTheme } from '@mui/material/styles'
+import MobileStepper from '@mui/material/MobileStepper'
 import Paper from '@mui/material/Paper'
 import Typography from '@mui/material/Typography'
-import { FormLabel } from '@mui/material'
+import Button from '@mui/material/Button'
+import KeyboardArrowLeft from '@mui/icons-material/KeyboardArrowLeft'
+import KeyboardArrowRight from '@mui/icons-material/KeyboardArrowRight'
 
 const steps = [
   {
-    label: 'Upload Resume',
-    description: `You can bulk upload resumes using .zip or .7z files or Upload a single pdf file`,
+    label: 'Select your data source',
+    description: `Bulk upload resumes using a zip file or choose previously uploaded file`,
   },
   {
-    label: 'Upload your job description',
+    label: 'Create a conversation with AI agent',
     description:
-      'You can upload your job description using .txt or .doc file or enter your JD straightaway in the text editor',
+      'You can select previous conversations with the AI agent or create new conversation',
   },
   {
-    label: 'Wait for the output',
-    description: `You can see the shortlisted resumes in your dashboard`,
+    label: 'Ask our AI to filter the resumes',
+    description: `Enter your job description and ask our AI agent to refine your query to filter the resumes`,
   },
 ]
 
-export default function VerticalLinearStepper() {
+export default function TextMobileStepper() {
+  const theme = useTheme()
   const [activeStep, setActiveStep] = React.useState(0)
+  const maxSteps = steps.length
 
   const handleNext = () => {
     setActiveStep((prevActiveStep) => prevActiveStep + 1)
@@ -36,57 +39,57 @@ export default function VerticalLinearStepper() {
     setActiveStep((prevActiveStep) => prevActiveStep - 1)
   }
 
-  const handleReset = () => {
-    setActiveStep(0)
-  }
-
   return (
     <Box>
-      <h3>Steps to automate your resume filtering process</h3>
-      <Stepper activeStep={activeStep} orientation="vertical">
-        {steps.map((step, index) => (
-          <Step key={step.label}>
-            <StepLabel
-              optional={
-                index === 2 ? (
-                  <Typography variant="caption">Last step</Typography>
-                ) : null
-              }
-            >
-              {step.label}
-            </StepLabel>
-            <StepContent>
-              <Typography>{step.description}</Typography>
-              <Box sx={{ mb: 2 }}>
-                <div>
-                  <Button
-                    variant="contained"
-                    onClick={handleNext}
-                    sx={{ mt: 1, mr: 1 }}
-                  >
-                    {index === steps.length - 1 ? 'Finish' : 'Next'}
-                  </Button>
-                  <Button
-                    disabled={index === 0}
-                    onClick={handleBack}
-                    sx={{ mt: 1, mr: 1 }}
-                  >
-                    Back
-                  </Button>
-                </div>
-              </Box>
-            </StepContent>
-          </Step>
-        ))}
-      </Stepper>
-      {activeStep === steps.length && (
-        <Paper square elevation={0} sx={{ p: 3 }}>
-          <Typography>All steps completed - you&apos;re finished</Typography>
-          <Button onClick={handleReset} sx={{ mt: 1, mr: 1 }}>
-            Show tutorial again
+      <Paper
+        square
+        elevation={0}
+        sx={{
+          display: 'flex',
+          alignItems: 'center',
+          height: 50,
+          pl: 2,
+          bgcolor: 'background.default',
+        }}
+      >
+        <Typography>{steps[activeStep].label}</Typography>
+      </Paper>
+      <Box
+        sx={{ height: 255, width: '100%', p: 2 }}
+        style={{ backgroundImage: 'url("./texture.jpg")' }}
+      >
+        {steps[activeStep].description}
+      </Box>
+      <MobileStepper
+        variant="text"
+        steps={maxSteps}
+        position="static"
+        activeStep={activeStep}
+        nextButton={
+          <Button
+            size="small"
+            onClick={handleNext}
+            disabled={activeStep === maxSteps - 1}
+          >
+            Next
+            {theme.direction === 'rtl' ? (
+              <KeyboardArrowLeft />
+            ) : (
+              <KeyboardArrowRight />
+            )}
           </Button>
-        </Paper>
-      )}
+        }
+        backButton={
+          <Button size="small" onClick={handleBack} disabled={activeStep === 0}>
+            {theme.direction === 'rtl' ? (
+              <KeyboardArrowRight />
+            ) : (
+              <KeyboardArrowLeft />
+            )}
+            Back
+          </Button>
+        }
+      />
     </Box>
   )
 }

@@ -4,7 +4,7 @@ import * as React from 'react'
 import Paper from '@mui/material/Paper'
 import InputBase from '@mui/material/InputBase'
 import IconButton from '@mui/material/IconButton'
-import SearchIcon from '@mui/icons-material/Search'
+import SendIcon from '@mui/icons-material/Send'
 
 const InputElement = () => {
   return (
@@ -22,7 +22,7 @@ const InputElement = () => {
         inputProps={{ 'aria-label': 'search google maps' }}
       />
       <IconButton type="button" sx={{ p: '10px' }} aria-label="search">
-        <SearchIcon />
+        <SendIcon />
       </IconButton>
     </Paper>
   )

@@ -1,0 +1,42 @@
+.modal {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 500px;
+  height: 500px;
+  box-shadow: 24;
+  padding: 15px;
+  background-color: white;
+}
+
+.modal_header {
+  text-align: center;
+  box-shadow: 0 1em 1em -1em rgba(0, 0, 0, 0.25);
+  height: 35px;
+}
+
+.modal_header h3 {
+  text-align: center;
+  box-shadow: 0 1em 1em -1em rgba(0, 0, 0, 0.25);
+  margin: 0;
+}
+
+.modal_content {
+  padding: 20px;
+  height: 375px;
+  display: grid;
+  grid-template-columns: auto;
+}
+
+.modal_footer {
+  padding: 20px;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  gap: 10px;
+}
+
+.carousel_container {
+  height: 600px;
+  position: relative;
+}

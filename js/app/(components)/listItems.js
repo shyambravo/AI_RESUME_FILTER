@@ -18,35 +18,32 @@ const MainListItems = () => {
 
   return (
     <React.Fragment>
-      <ListItemButton selected={pathname === PAGES.home}>
+      <ListItemButton
+        selected={pathname === PAGES.home}
+        onClick={() => reRoute(PAGES.home)}
+      >
         <ListItemIcon>
           <DashboardIcon />
         </ListItemIcon>
-        <ListItemText primary="Home" onClick={() => reRoute(PAGES.home)} />
+        <ListItemText primary="Home" />
       </ListItemButton>
-      <ListItemButton selected={pathname === PAGES.reports}>
+      <ListItemButton
+        selected={pathname === PAGES.reports}
+        onClick={() => reRoute(PAGES.reports)}
+      >
         <ListItemIcon>
           <BarChartIcon />
         </ListItemIcon>
-        <ListItemText
-          primary="Reports"
-          onClick={() => reRoute(PAGES.reports)}
-        />
+        <ListItemText primary="Reports" />
       </ListItemButton>
-      <ListItemButton selected={pathname === PAGES.AI}>
+      <ListItemButton
+        selected={pathname === PAGES.AI}
+        onClick={() => reRoute(PAGES.AI)}
+      >
         <ListItemIcon>
           <LayersIcon />
         </ListItemIcon>
-        <ListItemText primary="Ai magic" onClick={() => reRoute(PAGES.AI)} />
-      </ListItemButton>
-      <ListItemButton selected={pathname === PAGES.source}>
-        <ListItemIcon>
-          <SourceIcon />
-        </ListItemIcon>
-        <ListItemText
-          primary="Data source"
-          onClick={() => reRoute(PAGES.source)}
-        />
+        <ListItemText primary="Ai magic" />
       </ListItemButton>
     </React.Fragment>
   )

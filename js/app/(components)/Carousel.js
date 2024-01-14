@@ -1,11 +1,12 @@
 'use client'
 
-import React from 'react'
+import React, { useState } from 'react'
 import Carousel from 'react-material-ui-carousel'
+import CircularProgress from '@mui/material/CircularProgress'
 
 function Item(props) {
   return (
-    <div style={{ textAlign: 'center', fontFamily: 'Cabin Sketch, cursive' }}>
+    <div style={{ textAlign: 'center' }}>
       <h3>{props.item.description}</h3>
       <img
         style={{
@@ -15,12 +16,15 @@ function Item(props) {
         }}
         src={props.item.src}
         alt="AI resume filter"
+        loading="lazy"
       />
     </div>
   )
 }
 
 const CarouselComponent = () => {
+  const [isLoading, setLoader] = useState(true)
+
   var items = [
     {
       src: 'https://images.pexels.com/photos/590016/pexels-photo-590016.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1',
@@ -34,17 +38,34 @@ const CarouselComponent = () => {
 
   return (
     <>
-      <link rel="preconnect" href="https://fonts.googleapis.com" />
-      <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-      <link
-        href="https://fonts.googleapis.com/css2?family=Cabin+Sketch&display=swap"
-        rel="stylesheet"
-      />
-      <Carousel>
-        {items.map((item, i) => (
-          <Item key={i} item={item} />
-        ))}
-      </Carousel>
+      <div className="carousel_container">
+        {isLoading && (
+          <div
+            style={{
+              position: 'absolute',
+              height: '600px',
+              width: '100%',
+              display: 'flex',
+              justifyContent: 'center',
+              alignItems: 'center',
+              backgroundColor: 'white',
+              zIndex: 2,
+            }}
+          >
+            <CircularProgress />
+          </div>
+        )}
+        <Carousel
+          changeOnFirstRender
+          onChange={() => {
+            setLoader(false)
+          }}
+        >
+          {items.map((item, i) => (
+            <Item key={i} item={item} />
+          ))}
+        </Carousel>
+      </div>
     </>
   )
 }

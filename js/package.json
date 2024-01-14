@@ -21,7 +21,6 @@
     "react": "latest",
     "react-dom": "latest",
     "react-material-ui-carousel": "^3.4.2",
-    "react-mui-fileuploader": "^0.5.2",
     "recharts": "^2.8.0"
   },
   "devDependencies": {

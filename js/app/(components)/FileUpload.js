@@ -1,49 +1,70 @@
-import React from 'react'
-import FileUpload from 'react-mui-fileuploader'
+import { useState } from 'react'
+import { Button, Typography, Box } from '@mui/material'
 
-export default function FileUploadComponent() {
-  const handleFileUploadError = (error) => {
-    // Do something...
-  }
+const MAX_FILE_SIZE_MB = 100
+const ALLOWED_FILE_TYPES = [
+  'application/zip',
+  'application/x-zip',
+  'application/x-zip-compressed',
+  'application/octet-stream',
+  'application/x-compress',
+  'application/x-compressed',
+]
 
-  const handleFilesChange = (files) => {
-    // Do something...
-    console.log(files)
+const ImageFileUpload = (props) => {
+  const { selectedFile, setSelectedFile } = props
+
+  const [error, setError] = useState(null)
+
+  const handleFileChange = (event) => {
+    const file = event.target.files[0]
+
+    // File type validation
+    if (!ALLOWED_FILE_TYPES.includes(file.type)) {
+      setError('Invalid file type. Please upload a zip file.')
+      return
+    }
+
+    // File size validation
+    if (file.size > MAX_FILE_SIZE_MB * 1024 * 1024) {
+      setError(
+        `File size exceeds ${MAX_FILE_SIZE_MB} MB. Please choose a smaller file.`
+      )
+      return
+    }
+
+    setSelectedFile(file)
+    setError(null)
   }
 
   return (
-    <FileUpload
-      getBase64={false}
-      multiFile={true}
-      disabled={false}
-      title=""
-      header="Drag and drop your files here"
-      leftLabel="or"
-      rightLabel="to select files"
-      buttonLabel="click here"
-      buttonRemoveLabel="Remove all"
-      options={{
-        multiFile: true,
-        maxFileSize: 50,
-        maxUploadFiles: 0,
-        filesContainerHeight: 357,
-        maxFilesContainerHeight: 357,
-        allowedExtensions: ['jpg', 'jpeg'],
-      }}
-      errorSizeMessage={'fill it or remove it to use the default error message'}
-      //allowedExtensions={["jpg", "jpeg"]}
-      onFilesChange={handleFilesChange}
-      onError={handleFileUploadError}
-      //imageSrc={'path/to/custom/image'}
-      onContextReady={(context) => {}}
-      PlaceholderGridProps={{ md: 6 }}
-      LabelsGridProps={{ md: 6 }}
-      placeholderImageDimension={{
-        xs: { width: 128, height: 128 },
-        sm: { width: 128, height: 128 },
-        md: { width: 164, height: 164 },
-        lg: { width: 256, height: 256 },
-      }}
-    />
+    <Box p={3} border="1px dashed #ccc" borderRadius={8} textAlign="center">
+      <input
+        type="file"
+        accept=".zip"
+        onChange={handleFileChange}
+        style={{ display: 'none' }}
+        id="image-file-input"
+      />
+      <label htmlFor="image-file-input">
+        <Button variant="outlined" component="span">
+          Select File
+        </Button>
+      </label>
+      {selectedFile && (
+        <div>
+          <Typography variant="subtitle1" mt={2}>
+            Selected Image: {selectedFile.name}
+          </Typography>
+        </div>
+      )}
+      {error && (
+        <Typography variant="body2" color="error" mt={2}>
+          {error}
+        </Typography>
+      )}
+    </Box>
   )
 }
+
+export default ImageFileUpload

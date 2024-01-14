@@ -1,0 +1,17 @@
+.input_button {
+  background-color: #6a8bab;
+  margin-right: 10px;
+}
+
+.input_button:hover {
+  background-color: rgb(89, 111, 199);
+}
+
+.data_source {
+  display: flex;
+  align-items: center;
+}
+
+.chatbot_container {
+  margin: 10px;
+}
